@@ -71,13 +71,7 @@ backend/
 ├─ database.py
 ├─ db_ops.py
 ├─ ai_engine.py
-├─ optimization.py
-├─ analytics.py
-├─ admin.py
-├─ notification.py
 ├─ models.py
-├─ config.py
-└─ utils.py
 ```
 
 ## ⚙️ Tech Stack

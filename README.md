@@ -63,15 +63,22 @@ Admin Analytics Layer
 ## 📁 Project Structure
 
 ```
-backend/
+Restaurant_Reservation.ai/
 │
-├─ main.py
-├─ routes.py
-├─ chatbot.py
-├─ database.py
-├─ db_ops.py
-├─ ai_engine.py
-├─ models.py
+├─ backend/
+│   ├─ chatbot.py
+│   ├─ database.py
+│   ├─ db_ops.py
+│   ├─ main.py
+│   ├─ routes.py
+│   ├─ services.py
+│
+├─ index.html
+├─ chat3.jpg
+├─ food1.webp
+├─ .env.example  
+├─ .gitignore     
+
 ```
 
 ## ⚙️ Tech Stack

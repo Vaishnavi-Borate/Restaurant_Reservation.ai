@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>🤖 SmartDine AI</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial,Helvetica,sans-serif;
+    background-image: url("food1.WEBP");
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.chat-container{
+    width:420px;
+    height:600px;
+    background-image: url("chat3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    box-shadow:0 0 40px rgba(72, 52, 58, 0.6);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.header{
+    background:#984a9e;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.chat-box{
+    flex:1;
+    padding:12px;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.user-msg{
+    align-self:flex-end;
+    background:#dd51a3;
+    color:white;
+    padding:10px 14px;
+    border-radius:14px 14px 0 14px;
+    max-width:80%;
+}
+
+.bot-msg{
+    align-self:flex-start;
+    background:#c756a9;
+    color:white;
+    padding:10px 14px;
+    border-radius:14px 14px 14px 0;
+    max-width:80%;
+}
+
+.input-area{
+    display:flex;
+    padding:10px;
+    background:#963296;
+    border-top:1px solid #6811ba;
+}
+
+.input-area input{
+    flex:1;
+    padding:10px;
+    border-radius:8px;
+    border:none;
+    outline:none;
+}
+
+.input-area button{
+    margin-left:8px;
+    padding:10px 16px;
+    border:none;
+    border-radius:8px;
+    background:#c01b89;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+.sms-popup{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #111;
+  color: #0f0;
+  padding: 15px;
+  border-radius: 10px;
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp{
+  from{transform: translateY(100px); opacity:0;}
+  to{transform: translateY(0); opacity:1;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+    <div class="header">🤖 SmartDine AI</div>
+
+    <div class="chat-box" id="chatBox">
+        <div class="bot-msg">Hello 👋 I'm SmartDine AI. You can say: book table, waitlist, menu</div>
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="chatInput" placeholder="Type your message..." />
+        <button id="sendBtn">Send</button>
+    </div>
+</div>
+
+<script>
+const BASE_URL = "http://127.0.0.1:8000";
+
+function addMessage(text,type){
+    const box=document.getElementById("chatBox");
+    const div=document.createElement("div");
+    div.className= type === 'user' ? 'user-msg' : 'bot-msg';
+    div.innerText=text;
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
+}
+
+async function sendMessage(){
+    const input=document.getElementById("chatInput");
+    const msg=input.value.trim();
+    if(!msg) return;
+
+    addMessage(msg,'user');
+    input.value="";
+
+    try{
+        const res = await fetch(`${BASE_URL}/chat`,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({message:msg})
+        });
+
+        if(!res.ok){
+            throw new Error("Server error");
+        }
+
+        const data = await res.json();
+        addMessage(data.bot_reply,'bot');
+
+    }catch(err){
+        console.error("Connection Error:", err);
+        addMessage("❌ Backend not connected","bot");
+    }
+}
+
+document.getElementById("sendBtn").addEventListener("click", sendMessage);
+
+document.getElementById("chatInput").addEventListener("keypress",function(e){
+    if(e.key === 'Enter') sendMessage();
+});
+</script>
+
+
+</body>
+</html>

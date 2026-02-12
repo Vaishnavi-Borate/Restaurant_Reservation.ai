@@ -1,66 +1,128 @@
-# Restaurant_Reservation.ai
-AI-powered restaurant reservation and table optimization system with chatbot automation, waitlist management, and smart scheduling.
+# 🍽️ SmartDine AI
+
+### Intelligent Restaurant Reservation & Dining Management System
+
+SmartDine AI is an AI-powered restaurant management platform that automates reservations, waitlist handling, menu ordering, and customer engagement using an intelligent chatbot and scalable backend architecture.
+
+---
 
 ## 🚀 Key Features
 
-- 🤖 AI Reservation Chatbot  
-- 📅 Smart Table Booking System  
-- ⏳ Waitlist Management  
-- 📲 SMS Notification & Reminder System    
-- 📊 Admin Dashboard & Analytics   
+🤖 **AI Reservation Chatbot**
 
----
+* Natural language interaction
+* Multi-step conversation flow
+* Session memory
+* Intent detection
 
-## 🛠 Tech Stack
+📅 **Smart Table Booking System**
 
-**Frontend:**  
-- HTML, CSS, JavaScript 
+* Date & time-based booking
+* Conflict handling
+* Booking status management
 
-**Backend:**  
-- Python ( FastAPI) 
+⏳ **Waitlist Management**
 
-**Database:**  
-- SQLite  
+* Automated queue system
+* FIFO handling
+* Capacity-based promotion
+* Auto-notifications
 
-**APIs & Services:**  
-- OpenTable API (Integration Ready)  
-- Resy API (Integration Ready)  
-- SMS API (Twilio )  
+📲 **SMS Notification System**
 
-**AI / Logic:**  
-- Chatbot Engine  
-- Optimization Algorithms  
-- Scheduling Algorithms  
+* Booking confirmation
+* Waitlist alerts
+* Reminder messages
 
----
+🧮 **Table Optimization Algorithm**
+
+* Smart table allocation
+* Seat utilization optimization
+* Dynamic table grouping
+
+
 
 ## 🧠 System Architecture
 
-User  
-⬇  
-Chatbot Interface / Web App  
-⬇  
-API Layer  
-⬇  
-Reservation Engine  
-⬇  
-Table Optimization System  
-⬇  
-Database  
-⬇  
-Admin Dashboard & Analytics  
+```
+UI Layer (Web/App/Chatbot)
+        ↓
+AI Layer (Chatbot Engine)
+        ↓
+Business Logic Layer
+        ↓
+Optimization Engine
+        ↓
+Data Layer (SQLite → PostgreSQL Ready)
+        ↓
+Notification Layer (SMS)
+        ↓
+Admin Analytics Layer
+```
+
+## 📁 Project Structure
+
+```
+backend/
+│
+├─ main.py
+├─ routes.py
+├─ chatbot.py
+├─ database.py
+├─ db_ops.py
+├─ ai_engine.py
+├─ optimization.py
+├─ analytics.py
+├─ admin.py
+├─ notification.py
+├─ models.py
+├─ config.py
+└─ utils.py
+```
+
+## ⚙️ Tech Stack
+
+* **Backend:** FastAPI (Python)
+* **Database:** SQLite (WAL mode, concurrency safe)
+* **AI Layer:** Rule-based NLP + session management
+* **SMS:** API-based SMS gateway
+* **Architecture:** Modular microservice-ready design
 
 ---
 
-## 📦 Core Modules
+## 🧪 Core Functional Flows
 
-1. Reservation Chatbot Module  
-2. Table Management System  
-3. Waitlist Intelligence Module  
-4. Notification & Reminder System  
-5. Menu & Policy Compression Engine (ScaleDown)  
+### Reservation Flow
+
+```
+User → Chatbot → Name → Phone → Date → Time → People → DB Save → SMS Confirmation
+```
+
+### Waitlist Flow
+
+```
+User → Chatbot → Name → Phone → People → DB Save → SMS Notification
+```
+
+### Menu Order Flow
+
+```
+User → Reservation → Menu → Item → Quantity → DB Save → Order Confirmation
+```
+
+
+## 🎯 Vision
+
+SmartDine AI aims to become a complete **AI-powered restaurant automation platform** that:
+
+* Reduces operational workload
+* Improves customer experience
+* Optimizes resource utilization
+* Enhances business intelligence
+* Enables data-driven decisions
 
 ---
+
 
 ## 📁 Project Structure
 
